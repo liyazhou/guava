@@ -38,6 +38,36 @@ import java.util.Set;
  */
 @GwtCompatible(emulated = true)
 public final class OptionalTest extends TestCase {
+    public void testOptionalSet() throws Exception{
+        Optional<Integer> possible = Optional.of(6);
+        assertTrue(possible.isPresent());
+        System.out.println("present:" + possible.isPresent() + " " + possible.get());
+//        assertFalse("present:"+possible.isPresent(), possible.isPresent());
+        Optional<Integer> absent = Optional.absent();
+        assertFalse("absent:" + absent.isPresent(), absent.isPresent());
+        Optional<Integer> nullable = Optional.fromNullable(null);
+        assertFalse("nullable:" + nullable.isPresent(), nullable.isPresent());
+        Optional<Integer> notnullable = Optional.fromNullable(10);
+        assertTrue("notnullable:" + notnullable.isPresent(), notnullable.isPresent());
+        System.out.println("notnullable:" + notnullable.isPresent() + " " + notnullable.get());
+    }
+    public void testOptionalGet() throws Exception{
+        Optional<Integer> valueNull = Optional.fromNullable(null);
+        if(valueNull.isPresent()) {
+            System.out.println(valueNull.get());
+        }else {
+            System.out.println(valueNull.or(1));
+        }
+        System.out.println(valueNull.orNull());
+
+        Optional<Integer> valueNotNull = Optional.fromNullable(2);
+        if(valueNotNull.isPresent()) {
+            System.out.println(valueNotNull.get());
+        }else {
+            System.out.println(valueNotNull.or(11));
+        }
+        System.out.println(valueNotNull.orNull());
+    }
   public void testAbsent() {
     Optional<String> optionalName = Optional.absent();
     assertFalse(optionalName.isPresent());
