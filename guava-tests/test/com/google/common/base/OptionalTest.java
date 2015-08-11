@@ -145,10 +145,10 @@ public final class OptionalTest extends TestCase {
     }
   }
 
-  public void testOr_nullSupplier_present() {
-    Supplier<String> nullSupplier = Suppliers.ofInstance(null);
-    assertEquals("a", Optional.of("a").or(nullSupplier));
-  }
+  public void testor_nullsupplier_present() {
+        Supplier<String> nullSupplier = Suppliers.ofInstance(null);
+        assertEquals("a", Optional.of("a").or(nullSupplier));
+    }
 
   public void testOr_Optional_present() {
     assertEquals(Optional.of("a"), Optional.of("a").or(Optional.of("fallback")));
